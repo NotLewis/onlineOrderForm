@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>The Shirt Company</title>
+<link href="http://55060509.webdevmmu.uk/style-guide/global.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="container">
+<h1>Welcome to The Shirt Company (Est 2018)</h1>
+<p>Please enter your name and place your order.</p> 
+
+<form id="orderForm">
+<br><h2> Name </h2> 
+First Name: <input type="text" id="firstname" placeholder="Enter your first name" size="35" required>
+Family Name: <input type="text" id="lastname" placeholder="Enter your family name" size="35" required>
+    
+  
+<br><br><h2> Items </h2>    
+Cotton shirt: £20 per shirt Quantity: <select id="shirtQuantity">
+                                        <option value""> ... </option>
+                                        <option value="opt1">1</option>
+                                        <option value="opt2">2</option>
+                                        <option value="opt3">3</option>
+                                        <option value="opt4">4</option>
+                                        <option value="opt5">5</option>
+                                        </select>
+    
+Silk tie: £12 per tie Quantity: <select id="tieQuantity">
+                                        <option value""> ... </option>
+                                        <option value="opt1">1</option>
+                                        <option value="opt2">2</option>
+                                        <option value="opt3">3</option>
+                                        <option value="opt4">4</option>
+                                        <option value="opt5">5</option>
+                                        </select>
+    
+<br><br><h2> Select Customer Status</h2>  
+State: <select id="customerStatus">
+<option value="opt1">Non-registered customer</option> <!--no discount -->
+<option value="opt2">Registered customer</option> <!--10% -->
+<option value="opt3">Trade customer</option> <!-- 20% -->
+        </select>
+    
+<br><br><h2> Select Delivery </h2>   
+    <input type="radio" value="opt1" name="radioChoice" checked>
+7-day(£2 per order) <br>
+    <input type="radio" value="opt2" name="radioChoice" checked>
+3-day(£3 per order) <br>
+    <input type="radio" value="opt3" name="radioChoice" checked>
+Next-day(£5 per order) <br>
+    
+    
+<br><br><h2> Check Order </h2>     
+Please click here: <input type="button" id="button" value="Check your order">
+</form>
+
+   
+<p id="greeting"></p>
+<em><p id="resultShirt"></p></em>
+<em><p id="resultTie"></p></em>
+<p id="costs"></p>
+<b><p id="totalcosts"></p></b>
+<i><p id="checkout"></p></i>
+</div>
+  
+<script type="text/javascript">	 
+
+  
+var button = document.getElementById("button");
+var shirtQTY = 0;
+var tieQTY = 0;
+var discount = 0;
+
+var name = document.getElementById("name");
+var lastname = document.getElementById("lastname");    
+button.addEventListener("click", estimateOrder, false);
+	
+    
+    
+function estimateOrder(){
+    
+if (firstname.value === ""){
+window.alert("Please enter a valid first name");
+}
+
+else if (lastname.value === ""){
+window.alert("Please enter a valid last name");
+}  else {
+    
+var choice = document.getElementById('shirtQuantity').value; 
+    if (choice === 'opt1'){
+         shirtQTY = 1
+         resultShirt.innerHTML = "You have ordered " + (shirtQTY) + " shirt at £20. Subtotal £" + (shirtQTY * 20)
+        }
+    if (choice === 'opt2'){
+         shirtQTY = 2
+         resultShirt.innerHTML = "You have ordered " + (shirtQTY) + " shirts at £20 each. Subtotal £" + (shirtQTY * 20)
+        }
+    if (choice === 'opt3'){
+         shirtQTY = 3
+         resultShirt.innerHTML = "You have ordered " + (shirtQTY) + " shirts at £20 each. Subtotal £" + (shirtQTY * 20)
+        }
+    if (choice === 'opt4'){
+         shirtQTY = 4
+         resultShirt.innerHTML = "You have ordered " + (shirtQTY) + " shirts at £20 each. Subtotal £" + (shirtQTY * 20)
+        }
+    if (choice === 'opt5'){
+         shirtQTY = 5
+         resultShirt.innerHTML = "You have ordered " + (shirtQTY) + " shirts at £20 each. Subtotal £" + (shirtQTY * 20) 
+        }
+ 
+    
+ var choice = document.getElementById('tieQuantity').value; 
+    if (choice === 'opt1'){
+         tieQTY = 1
+         resultTie.innerHTML = "You have ordered " + (tieQTY) + " tie at £12. Subtotal £" + (tieQTY * 12)
+        }
+    if (choice === 'opt2'){
+         tieQTY = 2
+         resultTie.innerHTML = "You have ordered " + (tieQTY) + " ties at £12 each. Subtotal £" + (tieQTY * 12)
+        }
+    if (choice === 'opt3'){
+         tieQTY = 3
+         resultTie.innerHTML = "You have ordered " + (tieQTY) + " ties at £12 each. Subtotal £" + (tieQTY * 12)
+        }
+    if (choice === 'opt4'){
+         tieQTY = 4
+         resultTie.innerHTML = "You have ordered " + (tieQTY) + " ties at £12 each. Subtotal £" + (tieQTY * 12)
+        }
+    if (choice === 'opt5'){
+         tieQTY = 5
+         resultTie.innerHTML = "You have ordered " + (tieQTY) + " ties at £12 each. Subtotal £" + (tieQTY * 12)
+        } 
+    
+    
+    
+    var delivery = 0;
+    var radioChoice = document.getElementById('orderForm').radioChoice;
+    var radioValue ="";
+    
+    for (var i=0; i < radioChoice.length; i++){
+        if (radioChoice[i].checked) {
+radioValue = radioChoice[i].value;
+break
+}
+    }
+if (radioValue ==='opt1'){
+    delivery = 2 
+}
+    if (radioValue ==='opt2'){
+    delivery = 3 
+}
+    if (radioValue ==='opt3'){
+    delivery = 5 
+}
+    
+    
+    
+    
+var shirtTotal = (shirtQTY * 20);    
+var tieTotal = (tieQTY * 12);      
+var totalCost = (shirtTotal + tieTotal + delivery)
+var status = document.getElementById('customerStatus').value; 
+    if (status ==='opt1'){
+        discount = 0;
+        costs.innerHTML = "The delivery charge is £" + delivery 
+        totalcosts.innerHTML ="The total cost is £" + totalCost
+    }
+      if (status ==='opt2'){
+        discount = 0.1;
+        costs.innerHTML = "You have qualified for a discount of £" + (totalCost * discount)  + ". The delivery charge is £" + delivery
+        totalcosts.innerHTML = "The total cost is £" + (totalCost - (totalCost * discount)); 
+    }
+      if (status ==='opt3'){
+        discount = 0.2;
+         costs.innerHTML = "You have qualified for a discount of £" + (totalCost * discount)  + ". The delivery charge is £" + delivery 
+         totalcosts.innerHTML = "The total cost is £" + (totalCost - (totalCost * discount));  
+    } 
+    
+
+
+
+    
+greeting.innerHTML = "Hello " + firstname.value + " " + lastname.value + "! You have selected:"    
+    
+checkout.innerHTML = "If you're happy with that, please go ahead and place the order. Have an awesome day!"
+
+
+
+
+
+}
+}
+
+</script>
+</body>
+</html>
